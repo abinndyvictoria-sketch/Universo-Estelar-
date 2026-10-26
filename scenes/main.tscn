@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/virtual_joystick.gd" id="2_joystick"]
 [ext_resource type="Script" path="res://scripts/character_model.gd" id="3_character"]
+[ext_resource type="Script" path="res://scripts/world_builder.gd" id="4_world"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -36,6 +37,7 @@ radius = 0.42
 height = 1.7
 
 [node name="Main" type="Node3D"]
+script = ExtResource("4_world")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_main")
