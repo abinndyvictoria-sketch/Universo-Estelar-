@@ -22,3 +22,32 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;
 @keyframes pulse{50%{transform:scale(1.13);filter:brightness(1.25)}}@keyframes load{to{width:100%}}
 @media(min-width:700px){.welcome{left:32px;top:110px}.topbar{left:28px;right:28px}.joystick-zone{left:30px;bottom:30px}.right-controls{right:30px;bottom:30px}.bottom-label{bottom:18px}}
 @media(max-height:430px){.welcome{top:68px}.welcome h2{font-size:22px}.welcome p{display:none}.hint{top:23%}.joystick-zone{width:104px;height:104px;bottom:14px}.joy-ring{width:92px;height:92px}.joy-knob{width:43px;height:43px}.right-controls{bottom:18px}.action-button{width:62px;height:62px;border-radius:20px}.action-button span{font-size:24px}.bottom-label{bottom:8px;font-size:7px}}
+
+/* Revisão visual: jogo pensado para tela horizontal */
+.rotate-notice{display:none;position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 20%,#51458e 0%,#211a45 58%,#111027 100%);align-items:center;justify-content:center;padding:24px;text-align:center}
+.rotate-card{width:min(100%,360px);padding:28px 24px;border:1px solid #ffffff35;border-radius:28px;background:linear-gradient(145deg,#ffffff17,#ffffff08);box-shadow:0 22px 70px #08051e80;backdrop-filter:blur(18px)}
+.rotate-icon{font-size:52px;color:#f4d9ff;text-shadow:0 0 28px #cba7ff}
+.rotate-card h1{font-size:26px;margin:14px 0 8px;letter-spacing:-.8px}
+.rotate-card p{font-size:14px;line-height:1.6;color:#ded5ff;margin:0}
+.rotate-phone{font-size:34px;color:#ffe5a5;margin-top:18px;animation:turnphone 1.6s ease-in-out infinite}
+@keyframes turnphone{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-90deg)}}
+@media(orientation:portrait){.rotate-notice{display:flex}#game{visibility:hidden}}
+@media(orientation:landscape){.rotate-notice{display:none}#game{visibility:visible}}
+@media(orientation:landscape) and (max-height:500px){
+ .topbar{top:max(8px,env(safe-area-inset-top));left:12px;right:12px}
+ .brand-icon{width:29px;height:29px;border-radius:10px}
+ .glass-button{padding:8px 10px}
+ .welcome{left:18px;top:58px;max-width:220px}
+ .welcome h2{font-size:23px;margin:5px 0 3px}
+ .welcome p{font-size:10px}
+ .eyebrow{font-size:8px}
+ .hint{top:19%;font-size:10px;padding:7px 11px}
+ .joystick-zone{left:12px;bottom:12px;width:100px;height:100px}
+ .joy-ring{width:88px;height:88px}
+ .joy-knob{width:42px;height:42px}
+ .right-controls{right:14px;bottom:14px;gap:8px}
+ .action-button{width:62px;height:62px;border-radius:19px}
+ .action-button span{font-size:23px}
+ .round-button{width:38px;height:38px}
+ .bottom-label{bottom:8px;font-size:7px;padding:6px 9px}
+}
