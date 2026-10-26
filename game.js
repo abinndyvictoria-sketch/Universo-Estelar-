@@ -30,11 +30,11 @@ try {
   renderer.domElement.setAttribute('aria-label', 'Mundo 3D do Universo Estelar');
   game.prepend(renderer.domElement);
 
-  scene.add(new THREE.HemisphereLight('#f4eaff', '#70618f', 2.1));
+  scene.add(new THREE.HemisphereLight('#f8f0ff', '#7185a5', 2.35));
   const sun = new THREE.DirectionalLight('#fff0d9', 3.2);
   sun.position.set(-12, 22, 10); sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
   sun.shadow.camera.left = -28; sun.shadow.camera.right = 28; sun.shadow.camera.top = 28; sun.shadow.camera.bottom = -28; sun.shadow.bias = -0.0003; scene.add(sun);
-  const fill = new THREE.PointLight('#a9c5ff', 32, 38); fill.position.set(3, 5, -8); scene.add(fill);
+  const fill = new THREE.PointLight('#b7c8ff', 38, 45); fill.position.set(3, 7, -8); scene.add(fill);\n  // Ilhas de colinas suaves e nuvens para dar profundidade ao horizonte.\n  const horizonMats=['#c3b8ef','#a9c9ed','#e9c3e4'].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:1}));\n  for(let i=0;i<18;i++){const a=i*Math.PI*2/18,r=42+(i%3)*2,h=5+(i%4)*1.6;const hill=mesh(new THREE.SphereGeometry(1,24,16),horizonMats[i%3],Math.cos(a)*r,h*.2,Math.sin(a)*r,scene,false,true);hill.scale.set(9+(i%3)*2,h,7+(i%4));}\n  const cloudMat=new THREE.MeshStandardMaterial({color:'#fff8ff',roughness:1,transparent:true,opacity:.78});\n  for(let i=0;i<9;i++){const cloud=new THREE.Group();cloud.position.set(-32+i*8,15+(i%3)*2,-30-(i%4)*8);scene.add(cloud);for(let j=0;j<4;j++){const puff=mesh(new THREE.SphereGeometry(1,16,12),cloudMat,(j-1.5)*1.15,(j%2)*.35,0,cloud,false,false);puff.scale.set(1.5,.58,.72);}}
 
   const mat = (color, roughness=0.82, extra={}) => new THREE.MeshStandardMaterial({ color, roughness, ...extra });
   const mats = {
@@ -127,6 +127,6 @@ try {
     crystal.rotation.y+=dt*.45;crystal.position.y=2.3+Math.sin(elapsed*1.5)*.09;glow.intensity=17+Math.sin(elapsed*2.3)*4;motes.children.forEach(m=>m.position.y=m.userData.baseY+Math.sin(elapsed*1.2+m.userData.phase)*.16);
     const followDist=cameraMode?camDistance+2.5:camDistance;camera.position.lerp(new THREE.Vector3(player.position.x+Math.sin(yaw)*followDist*.4,player.position.y+5.4,player.position.z+followDist),1-Math.exp(-dt*3.4));camera.lookAt(player.position.x,player.position.y+1.05,player.position.z);
     positionText.textContent=moving?'EXPLORANDO A PRAÇA':'PRONTA PARA EXPLORAR';renderer.render(scene,camera)}
-  function resize(){camera.aspect=innerWidth/innerHeight;camera.fov=innerWidth<600&&innerHeight>innerWidth?58:48;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.setSize(innerWidth,innerHeight)}
+  function resize(){camera.aspect=innerWidth/innerHeight;camera.fov=innerWidth/innerHeight<1?58:46;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.8));renderer.setSize(innerWidth,innerHeight)}
   window.addEventListener('resize',resize);loading.classList.add('hidden');setTimeout(()=>loading.remove(),600);animate();
 }catch(error){console.error(error);loading.classList.add('hidden');errorBox.hidden=false;errorBox.textContent='Não foi possível iniciar o mundo 3D. Confira sua conexão e tente atualizar a página.\nDetalhe: '+(error?.message||error)}
