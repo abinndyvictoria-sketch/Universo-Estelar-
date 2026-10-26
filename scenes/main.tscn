@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/virtual_joystick.gd" id="2_joystick"]
 [ext_resource type="Script" path="res://scripts/character_model.gd" id="3_character"]
 [ext_resource type="Script" path="res://scripts/world_builder.gd" id="4_world"]
+[ext_resource type="Script" path="res://scripts/customization_panel.gd" id="5_customization"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -90,3 +91,6 @@ offset_top = -204.0
 offset_right = 204.0
 offset_bottom = -24.0
 script = ExtResource("2_joystick")
+
+[node name="CustomizationPanel" type="Control" parent="MobileControls"]
+script = ExtResource("5_customization")
