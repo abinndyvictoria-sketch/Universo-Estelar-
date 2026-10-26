@@ -34,7 +34,12 @@ try {
   const sun = new THREE.DirectionalLight('#fff0d9', 3.2);
   sun.position.set(-12, 22, 10); sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
   sun.shadow.camera.left = -28; sun.shadow.camera.right = 28; sun.shadow.camera.top = 28; sun.shadow.camera.bottom = -28; sun.shadow.bias = -0.0003; scene.add(sun);
-  const fill = new THREE.PointLight('#b7c8ff', 38, 45); fill.position.set(3, 7, -8); scene.add(fill);\n  // Ilhas de colinas suaves e nuvens para dar profundidade ao horizonte.\n  const horizonMats=['#c3b8ef','#a9c9ed','#e9c3e4'].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:1}));\n  for(let i=0;i<18;i++){const a=i*Math.PI*2/18,r=42+(i%3)*2,h=5+(i%4)*1.6;const hill=mesh(new THREE.SphereGeometry(1,24,16),horizonMats[i%3],Math.cos(a)*r,h*.2,Math.sin(a)*r,scene,false,true);hill.scale.set(9+(i%3)*2,h,7+(i%4));}\n  const cloudMat=new THREE.MeshStandardMaterial({color:'#fff8ff',roughness:1,transparent:true,opacity:.78});\n  for(let i=0;i<9;i++){const cloud=new THREE.Group();cloud.position.set(-32+i*8,15+(i%3)*2,-30-(i%4)*8);scene.add(cloud);for(let j=0;j<4;j++){const puff=mesh(new THREE.SphereGeometry(1,16,12),cloudMat,(j-1.5)*1.15,(j%2)*.35,0,cloud,false,false);puff.scale.set(1.5,.58,.72);}}
+  const fill = new THREE.PointLight('#b7c8ff', 38, 45); fill.position.set(3, 7, -8); scene.add(fill);
+  // Ilhas de colinas suaves e nuvens para dar profundidade ao horizonte.
+  const horizonMats=['#c3b8ef','#a9c9ed','#e9c3e4'].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:1}));
+  for(let i=0;i<18;i++){const a=i*Math.PI*2/18,r=42+(i%3)*2,h=5+(i%4)*1.6;const hill=mesh(new THREE.SphereGeometry(1,24,16),horizonMats[i%3],Math.cos(a)*r,h*.2,Math.sin(a)*r,scene,false,true);hill.scale.set(9+(i%3)*2,h,7+(i%4));}
+  const cloudMat=new THREE.MeshStandardMaterial({color:'#fff8ff',roughness:1,transparent:true,opacity:.78});
+  for(let i=0;i<9;i++){const cloud=new THREE.Group();cloud.position.set(-32+i*8,15+(i%3)*2,-30-(i%4)*8);scene.add(cloud);for(let j=0;j<4;j++){const puff=mesh(new THREE.SphereGeometry(1,16,12),cloudMat,(j-1.5)*1.15,(j%2)*.35,0,cloud,false,false);puff.scale.set(1.5,.58,.72);}}
 
   const mat = (color, roughness=0.82, extra={}) => new THREE.MeshStandardMaterial({ color, roughness, ...extra });
   const mats = {
@@ -129,4 +134,5 @@ try {
     positionText.textContent=moving?'EXPLORANDO A PRAÇA':'PRONTA PARA EXPLORAR';renderer.render(scene,camera)}
   function resize(){camera.aspect=innerWidth/innerHeight;camera.fov=innerWidth/innerHeight<1?58:46;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.8));renderer.setSize(innerWidth,innerHeight)}
   window.addEventListener('resize',resize);loading.classList.add('hidden');setTimeout(()=>loading.remove(),600);animate();
-}catch(error){console.error(error);loading.classList.add('hidden');errorBox.hidden=false;errorBox.textContent='Não foi possível iniciar o mundo 3D. Confira sua conexão e tente atualizar a página.\nDetalhe: '+(error?.message||error)}
+}catch(error){console.error(error);loading.classList.add('hidden');errorBox.hidden=false;errorBox.textContent='Não foi possível iniciar o mundo 3D. Confira sua conexão e tente atualizar a página.
+Detalhe: '+(error?.message||error)}
