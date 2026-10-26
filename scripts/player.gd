@@ -1,23 +1,14 @@
 extends CharacterBody3D
 
-## Movimento inicial para testar o protótipo.
-## Os controles de toque serão adicionados na próxima etapa.
+## Primeiro protótipo: movimentação 3D e câmera seguindo o personagem.
+## O joystick virtual para toque será adicionado na etapa seguinte.
 
 @export var move_speed: float = 5.0
 @export var rotation_speed: float = 10.0
 @export var gravity: float = 18.0
 
-@onready var camera_pivot: Node3D = $CameraPivot
-
 func _physics_process(delta: float) -> void:
-    var input_2d := Vector2(
-        Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-        Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
-    )
-
-    if input_2d.length() > 1.0:
-        input_2d = input_2d.normalized()
-
+    var input_2d := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
     var move_dir := Vector3(input_2d.x, 0.0, input_2d.y)
 
     if move_dir.length_squared() > 0.001:
