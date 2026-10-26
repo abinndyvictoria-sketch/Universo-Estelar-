@@ -18,4 +18,4 @@ Godot Engine 4.x. Este repositório contém os arquivos-fonte do protótipo; ger
 
 ## Estado atual
 
-Etapa 1 criada e etapa 2 implementada no código: joystick virtual com suporte a toque/arraste e mouse, movimentação 3D e câmera seguindo o personagem. Ainda precisa ser aberto e testado no Godot.
+Etapas 1 e 2 implementadas no código. Etapa 3: modelo 3D estilizado inicial criado por script com cabeça, cabelo, olhos, roupa, tênis e presilha de estrela. O projeto ainda precisa ser aberto e testado no Godot.
