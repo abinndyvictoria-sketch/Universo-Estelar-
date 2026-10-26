@@ -19,3 +19,13 @@ Godot Engine 4.x. Este repositório contém os arquivos-fonte do protótipo; ger
 ## Estado atual
 
 Etapas 1 a 5 preparadas no código: joystick, movimento, personagem 3D inicial, praça e painel de personalização com salvamento local da aparência. O projeto ainda não foi executado no Godot; é necessário testar a abertura e corrigir eventuais erros antes do multiplayer.
+
+
+## Versão web em desenvolvimento
+
+A versão web inicial foi adicionada na raiz do repositório:
+- `index.html`: interface do jogo.
+- `style.css`: interface adaptada para celular.
+- `game.js`: cena 3D inicial com praça pastel, fonte estrelada, casas, árvores, personagem e joystick virtual.
+
+A cena usa Three.js carregado por CDN, então é necessário estar conectado à internet. Esta é uma primeira versão experimental; ainda precisa ser aberta em hospedagem web e testada em um celular real. A versão Godot original foi mantida nos arquivos do projeto.
