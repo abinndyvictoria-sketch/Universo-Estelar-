@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
 
@@ -13,17 +13,25 @@ ambient_light_energy = 0.8
 albedo_color = Color(0.18, 0.2, 0.34, 1)
 roughness = 0.92
 
+[sub_resource type="StandardMaterial3D" id="Material_player"]
+albedo_color = Color(0.68, 0.48, 1, 1)
+roughness = 0.48
+
 [sub_resource type="CapsuleMesh" id="Capsule_player"]
 radius = 0.42
 height = 1.7
 material = SubResource("Material_player")
 
-[sub_resource type="StandardMaterial3D" id="Material_player"]
-albedo_color = Color(0.68, 0.48, 1, 1)
-roughness = 0.48
+[sub_resource type="BoxMesh" id="Ground_mesh"]
+size = Vector3(60, 1, 60)
+material = SubResource("Material_ground")
 
 [sub_resource type="BoxShape3D" id="Ground_shape"]
 size = Vector3(60, 1, 60)
+
+[sub_resource type="CapsuleShape3D" id="Player_shape"]
+radius = 0.42
+height = 1.7
 
 [node name="Main" type="Node3D"]
 
@@ -39,9 +47,7 @@ shadow_enabled = true
 position = Vector3(0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = BoxMesh.new()
-material_override = SubResource("Material_ground")
-size = Vector3(60, 1, 60)
+mesh = SubResource("Ground_mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("Ground_shape")
@@ -51,10 +57,9 @@ position = Vector3(0, 1, 0)
 script = ExtResource("1_player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = CapsuleShape3D.new()
+shape = SubResource("Player_shape")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="Player"]
-position = Vector3(0, 0, 0)
 mesh = SubResource("Capsule_player")
 
 [node name="CameraPivot" type="Node3D" parent="Player"]
@@ -65,5 +70,4 @@ spring_length = 6.0
 rotation = Vector3(-0.22, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraPivot/SpringArm3D"]
-position = Vector3(0, 0, 0)
 current = true
