@@ -5,7 +5,7 @@ Protótipo de um jogo social 3D fofo para Android, em tela horizontal, com perso
 ## Plano de desenvolvimento
 
 1. **Base jogável:** projeto Godot, cenário 3D simples, personagem com movimento e câmera.
-2. **Controles móveis:** joystick virtual e botões de interação.
+2. **Controles móveis:** joystick virtual implementado; botões de interação ficam para uma revisão futura.
 3. **Visual do personagem:** modelo 3D inicial, animações e opções de aparência.
 4. **Cenário interativo:** praça, casas, portas e objetos.
 5. **Personalização:** salvar aparência, cabelos, roupas e acessórios.
@@ -18,4 +18,4 @@ Godot Engine 4.x. Este repositório contém os arquivos-fonte do protótipo; ger
 
 ## Estado atual
 
-Primeira etapa em andamento: estrutura inicial do projeto e protótipo de movimentação.
+Etapa 1 criada e etapa 2 implementada no código: joystick virtual com suporte a toque/arraste e mouse, movimentação 3D e câmera seguindo o personagem. Ainda precisa ser aberto e testado no Godot.
