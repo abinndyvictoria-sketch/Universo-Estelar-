@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "perdidos",
+  "title": "Perdidos",
+  "genre": "Fantasia",
+  "description": "Cinco adolescentes encontram uma porta misteriosa em uma floresta onde as estrelas começam a desaparecer.",
+  "coverSymbol": "✧",
+  "author": "MagicChoice",
+  "status": "ongoing",
+  "episodes": [
+    {
+      "id": "perdidos-ep1",
+      "number": 1,
+      "title": "A Porta",
+      "startSceneId": "floresta",
+      "scenes": [
+        {
+          "id": "floresta",
+          "title": "A Porta",
+          "location": "A FLORESTA",
+          "backgroundColor": "linear-gradient(180deg, #30234a, #151120)",
+          "text": "A floresta estava silenciosa demais. Entre as árvores, você encontra uma porta antiga, coberta por símbolos brilhantes. Ela está completamente isolada, sem paredes ao redor. Uma brisa gelada passa por você, embora as folhas permaneçam imóveis.",
+          "choices": [
+            {
+              "id": "abrir",
+              "text": "Abrir a porta",
+              "nextSceneId": "portal",
+              "effects": { "coragem": 1 }
+            },
+            {
+              "id": "investigar",
+              "text": "Investigar a floresta",
+              "nextSceneId": "trilha",
+              "effects": { "curiosidade": 1 }
+            }
+          ]
+        },
+        {
+          "id": "portal",
+          "title": "O céu do outro lado",
+          "location": "A PORTA",
+          "backgroundColor": "radial-gradient(ellipse at 70% 15%, #66509c, transparent 45%), linear-gradient(180deg, #252044, #12101e)",
+          "text": "Assim que seus dedos tocam a maçaneta, a porta se abre sozinha. Do outro lado existe um céu desconhecido, atravessado por rios de luz. Uma estrela cai e desaparece antes de tocar o horizonte. Então, uma voz sussurra: “Finalmente você chegou.”",
+          "choices": [
+            {
+              "id": "atravessar",
+              "text": "Atravessar a porta",
+              "nextSceneId": "outro-mundo",
+              "effects": { "atravessouPortal": true }
+            },
+            {
+              "id": "recuar",
+              "text": "Recuar e observar",
+              "nextSceneId": "sussurro",
+              "effects": { "desconfianca": 1 }
+            }
+          ]
+        },
+        {
+          "id": "trilha",
+          "title": "As marcas",
+          "location": "ENTRE AS ÁRVORES",
+          "backgroundColor": "radial-gradient(ellipse at 30% 25%, #3e5575, transparent 45%), linear-gradient(180deg, #1c2a3b, #12101e)",
+          "text": "Entre as raízes, você encontra cinco marcas recentes e um pedaço de papel dobrado. A frase escrita nele parece ter sido feita às pressas: NÃO DEIXE A ESTRELA DESAPARECER. No verso, há um desenho idêntico aos símbolos da porta.",
+          "choices": [
+            {
+              "id": "seguir-marcas",
+              "text": "Seguir as marcas pelo bosque",
+              "nextSceneId": "sussurro",
+              "effects": { "pistaEncontrada": true }
+            },
+            {
+              "id": "voltar-porta",
+              "text": "Voltar e examinar a porta",
+              "nextSceneId": "portal",
+              "effects": { "pistaEncontrada": true }
+            }
+          ]
+        },
+        {
+          "id": "sussurro",
+          "title": "Eu encontrei você",
+          "location": "A FLORESTA ESCURA",
+          "backgroundColor": "radial-gradient(ellipse at 50% 20%, #51406e, transparent 45%), linear-gradient(180deg, #211b31, #100d19)",
+          "text": "Um sussurro atravessa as árvores: “EU ENCONTREI VOCÊ.” Quando você olha para trás, há pegadas que não estavam ali antes. São cinco pares, todos apontando para a porta — e um sexto par que termina exatamente aos seus pés.",
+          "choices": [
+            {
+              "id": "seguir-pegadas",
+              "text": "Seguir as pegadas até a porta",
+              "nextSceneId": "portal",
+              "effects": { "seguiuPegadas": true }
+            },
+            {
+              "id": "ficar",
+              "text": "Ficar escondido e observar",
+              "nextSceneId": "fim-episodio",
+              "effects": { "cauteloso": true }
+            }
+          ]
+        },
+        {
+          "id": "outro-mundo",
+          "title": "Cinco silhuetas",
+          "location": "DO OUTRO LADO",
+          "backgroundColor": "radial-gradient(ellipse at 50% 18%, #7a5aab, transparent 43%), linear-gradient(180deg, #24203f, #100d19)",
+          "text": "Você atravessa a passagem e chega a um lugar onde o céu parece estar rachado. Ao longe, cinco silhuetas observam você. Uma delas dá um passo à frente e chama seu nome, embora você nunca tenha estado ali antes. Atrás de vocês, a porta desaparece.",
+          "choices": [
+            {
+              "id": "aproximar",
+              "text": "Aproximar-se das silhuetas",
+              "nextSceneId": "fim-episodio",
+              "effects": { "encontrouSilhuetas": true }
+            },
+            {
+              "id": "observar",
+              "text": "Observar de longe antes de agir",
+              "nextSceneId": "fim-episodio",
+              "effects": { "cauteloso": true }
+            }
+          ]
+        },
+        {
+          "id": "fim-episodio",
+          "title": "Não foi por acaso",
+          "location": "FIM DO EPISÓDIO",
+          "backgroundColor": "radial-gradient(ellipse at 50% 15%, #56417c, transparent 42%), linear-gradient(180deg, #201a34, #100d19)",
+          "text": "A floresta ficou para trás — ou talvez você nunca tenha realmente saído dela. Você ainda não sabe onde está, nem quem está esperando por você. Mas uma coisa é certa: não chegou aqui por acaso. No céu, mais uma estrela começa a desaparecer.",
+          "choices": [],
+          "ending": {
+            "id": "continua",
+            "type": "episode_end",
+            "text": "Continua no Episódio 2..."
+          }
+        }
+      ]
+    }
+  ]
+}

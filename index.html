@@ -2,33 +2,90 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#17152f">
-  <meta name="description" content="Universo Estelar — explore uma praça mágica e crie sua própria aventura.">
-  <title>Universo Estelar ✦</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d1b">
+  <meta name="description" content="MagicChoice — suas histórias, suas escolhas, seu destino.">
+  <title>MagicChoice — Suas escolhas, seu destino</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="rotateNotice" class="rotate-notice" aria-live="polite"><div class="rotate-card"><div class="rotate-icon">▱</div><h1>Vire o celular ✦</h1><p>O Universo Estelar foi feito para jogar com a tela deitada.</p><div class="rotate-phone">↻</div></div></div>
-  <main id="game">
-    <div id="loading" class="loading">
-      <div class="logo-star">✦</div>
-      <h1>Universo Estelar</h1>
-      <p>Preparando seu universo...</p>
-      <div class="loading-track"><span></span></div>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" data-view="home" aria-label="MagicChoice início">
+      <span class="brand-mark">✦</span><span>Magic<span class="brand-light">Choice</span><small>SUAS ESCOLHAS, SEU DESTINO</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-button" id="search-toggle" aria-label="Pesquisar histórias" title="Pesquisar">⌕</button>
+      <button class="avatar-button" data-view="settings" aria-label="Configurações">✧</button>
     </div>
-    <div class="topbar">
-      <div class="brand"><span class="brand-icon">✦</span><span>UNIVERSO <b>ESTELAR</b></span></div>
-      <div class="top-actions"><button id="cameraBtn" class="glass-button" aria-label="Alternar câmera">◉ Câmera</button><button id="soundBtn" class="glass-button" aria-label="Som">♫ Som</button></div>
-    </div>
-    <div class="welcome"><span class="eyebrow">SEU CANTINHO NO COSMOS</span><h2>Olá, estrelinha! <span>✧</span></h2><p>Explore a praça e descubra seu mundo.</p></div>
-    <div class="hint" id="hint">Arraste o joystick para caminhar</div>
-    <div class="joystick-zone" id="joystickZone" aria-label="Joystick virtual"><div class="joy-ring"><div id="joyKnob" class="joy-knob"></div></div></div>
-    <div class="right-controls"><button id="interactBtn" class="action-button"><span>✧</span><small>INTERAGIR</small></button><button id="lookBtn" class="round-button" aria-label="Centralizar câmera">⟳</button></div>
-    <div id="toast" class="toast" role="status"></div>
-    <div class="bottom-label"><span class="live-dot"></span> PRAÇA DAS ESTRELAS <span class="label-separator">•</span> <span id="positionText">PRONTA PARA EXPLORAR</span></div>
-    <div id="errorBox" class="error-box" hidden></div>
+  </header>
+
+  <main id="app" class="app-shell">
+    <section id="home-view" class="view active">
+      <div class="welcome-row"><div><p class="eyebrow">SEU PRÓXIMO UNIVERSO COMEÇA AQUI</p><h1>Entre em uma<br><span>nova história.</span></h1><p class="muted intro">Leia, escolha e descubra até onde suas decisões podem levar.</p></div><div class="moon-art" aria-hidden="true"><span>☾</span><i>✦</i><b>·</b></div></div>
+      <form id="search-form" class="search-bar hidden"><span>⌕</span><input id="search-input" type="search" placeholder="Buscar por título ou gênero..." aria-label="Buscar histórias"><button type="button" id="search-close">×</button></form>
+      <section id="continue-section" class="section-block hidden"><div class="section-heading"><div><p class="eyebrow">DE ONDE VOCÊ PAROU</p><h2>Continue sua leitura</h2></div></div><div id="continue-card"></div></section>
+      <section class="section-block"><div class="section-heading"><div><p class="eyebrow">ESCOLHA SEU CLIMA</p><h2>Explore universos</h2></div><button class="text-button" data-view="explore">Ver tudo ↗</button></div><div class="genre-grid">
+        <button class="genre-card genre-romance" data-genre="Romance"><span>♡</span><strong>Romance</strong><small>Laços e sentimentos</small></button>
+        <button class="genre-card genre-mystery" data-genre="Mistério"><span>⌕</span><strong>Mistério</strong><small>Segredos escondidos</small></button>
+        <button class="genre-card genre-fantasy" data-genre="Fantasia"><span>✧</span><strong>Fantasia</strong><small>Outros mundos</small></button>
+        <button class="genre-card genre-suspense" data-genre="Suspense"><span>☾</span><strong>Suspense</strong><small>Nem tudo é o que parece</small></button>
+      </div></section>
+      <section class="section-block"><div class="section-heading"><div><p class="eyebrow">ABRA A PRIMEIRA PORTA</p><h2>Em destaque</h2></div></div><div id="featured-list" class="story-grid"></div></section>
+      <section class="section-block"><div class="section-heading"><div><p class="eyebrow">SUAS CRIAÇÕES</p><h2>Histórias feitas por você</h2></div><button class="text-button" data-view="create">＋ Criar</button></div><div id="created-list" class="story-grid"></div><p id="created-empty" class="empty-note">Suas histórias aparecerão aqui. Crie uma aventura e dê vida ao seu universo.</p></section>
+    </section>
+
+    <section id="explore-view" class="view">
+      <div class="page-heading"><p class="eyebrow">ENCONTRE SUA PRÓXIMA AVENTURA</p><h1>Explorar <span>histórias</span></h1><p class="muted">Cada escolha abre um caminho diferente.</p></div>
+      <div class="filter-row" id="filter-row"><button class="filter-chip selected" data-filter="Todos">Todas</button><button class="filter-chip" data-filter="Fantasia">Fantasia</button><button class="filter-chip" data-filter="Romance">Romance</button><button class="filter-chip" data-filter="Mistério">Mistério</button><button class="filter-chip" data-filter="Suspense">Suspense</button><button class="filter-chip" data-filter="Favoritos">♥ Favoritos</button></div>
+      <div id="explore-list" class="story-grid"></div><p id="explore-empty" class="empty-note hidden">Nenhuma história encontrada por aqui ainda.</p>
+    </section>
+
+    <section id="library-view" class="view">
+      <div class="page-heading"><p class="eyebrow">SEU PEQUENO MULTIVERSO</p><h1>Minha <span>biblioteca</span></h1><p class="muted">Favoritos e histórias que você já começou.</p></div>
+      <div class="filter-row"><button class="filter-chip selected" data-library-filter="recent">Em andamento</button><button class="filter-chip" data-library-filter="favorites">Favoritos</button><button class="filter-chip" data-library-filter="created">Criadas por mim</button></div>
+      <div id="library-list" class="story-grid"></div><p id="library-empty" class="empty-note hidden">Sua biblioteca está esperando pela primeira aventura.</p>
+    </section>
+
+    <section id="reader-view" class="view reader-view">
+      <div class="reader-top"><button class="back-button" id="reader-back">← Biblioteca</button><span id="reader-episode-label" class="pill">EPISÓDIO 1</span><button class="icon-button" id="reader-favorite" aria-label="Adicionar aos favoritos">♡</button></div>
+      <div id="reader-scene" class="reader-scene"><div class="scene-sky"><span class="scene-star star-a">✦</span><span class="scene-star star-b">✧</span><span class="scene-moon">☾</span></div><div class="scene-content"><p id="reader-location" class="eyebrow">A FLORESTA</p><h1 id="reader-title">Perdidos</h1><p id="reader-text" class="scene-text"></p><div id="reader-choices" class="choice-list"></div><button id="reader-continue" class="primary-button hidden">Continuar →</button></div></div>
+      <div class="reader-footer"><span id="reader-progress">Episódio 1</span><button id="reader-restart" class="text-button">Recomeçar episódio ↻</button></div>
+    </section>
+
+    <section id="create-view" class="view">
+      <div class="page-heading"><p class="eyebrow">SUA IMAGINAÇÃO, SUAS REGRAS</p><h1>Crie uma <span>história</span></h1><p class="muted">Monte uma aventura sem precisar programar.</p></div>
+      <form id="story-form" class="editor-card">
+        <label for="story-title">Título da história</label><input id="story-title" required maxlength="70" placeholder="Ex.: A Cidade das Estrelas">
+        <label for="story-genre">Gênero</label><select id="story-genre"><option>Fantasia</option><option>Romance</option><option>Mistério</option><option>Suspense</option><option>Aventura</option><option>Drama</option></select>
+        <label for="story-description">Sinopse</label><textarea id="story-description" maxlength="280" rows="3" placeholder="Sobre o que é sua história?"></textarea>
+        <label for="scene-text">Cena inicial</label><textarea id="scene-text" required maxlength="1800" rows="5" placeholder="Descreva o que acontece no início..."></textarea>
+        <div class="two-fields"><div><label for="choice-one">Primeira escolha</label><input id="choice-one" required maxlength="100" placeholder="Ex.: Abrir a porta"></div><div><label for="choice-two">Segunda escolha</label><input id="choice-two" required maxlength="100" placeholder="Ex.: Fugir"></div></div>
+        <p class="helper-text">Sua criação ficará salva neste aparelho. Você poderá exportá-la em JSON para compartilhar ou guardar uma cópia.</p>
+        <button class="primary-button" type="submit">✦ Criar minha história</button>
+      </form>
+      <div class="import-card"><div><h3>Já tem uma história?</h3><p class="muted">Importe um arquivo JSON do MagicChoice.</p></div><label class="secondary-button file-button">Importar JSON<input id="import-file" type="file" accept=".json,application/json" hidden></label></div>
+    </section>
+
+    <section id="settings-view" class="view">
+      <div class="page-heading"><p class="eyebrow">DO SEU JEITO</p><h1>Configura<span>ções</span></h1></div>
+      <div class="settings-card"><div><strong>Tamanho do texto</strong><p class="muted">Ajuste a leitura para ficar confortável.</p></div><div class="setting-control"><button id="font-down" class="secondary-button" aria-label="Diminuir texto">A−</button><span id="font-size-label">100%</span><button id="font-up" class="secondary-button" aria-label="Aumentar texto">A+</button></div></div>
+      <div class="settings-card"><div><strong>Seus dados</strong><p class="muted">Exporte suas histórias e seu progresso para guardar uma cópia.</p></div><button id="backup-export" class="secondary-button">Exportar backup</button></div>
+      <div class="settings-card"><div><strong>Sobre o MagicChoice</strong><p class="muted">Uma experiência de histórias interativas feita com HTML, CSS e JavaScript. Sem conta e sem servidor.</p></div><span class="version-tag">Versão 0.1</span></div>
+      <p class="privacy-note">Seus dados ficam neste navegador. Limpar os dados do site pode apagar histórias e progresso. Exporte um backup de vez em quando.</p>
+    </section>
   </main>
-  <script type="module" src="./game.js"></script>
+
+  <nav class="bottom-nav" aria-label="Navegação principal">
+    <button class="nav-item active" data-view="home"><span>⌂</span><small>Início</small></button>
+    <button class="nav-item" data-view="explore"><span>✧</span><small>Explorar</small></button>
+    <button class="nav-item create-nav" data-view="create"><span>＋</span><small>Criar</small></button>
+    <button class="nav-item" data-view="library"><span>▤</span><small>Biblioteca</small></button>
+    <button class="nav-item" data-view="settings"><span>⚙</span><small>Ajustes</small></button>
+  </nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
