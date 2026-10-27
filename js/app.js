@@ -201,10 +201,13 @@
     $$("[data-genre]").forEach(button => button.addEventListener("click", () => { state.exploreFilter = button.dataset.genre; setView("explore"); renderExplore(); }));
     $$("#filter-row [data-filter]").forEach(button => button.addEventListener("click", () => { state.exploreFilter = button.dataset.filter; renderExplore(); }));
     $$("[data-library-filter]").forEach(button => button.addEventListener("click", () => { state.libraryFilter = button.dataset.libraryFilter; renderLibrary(); }));
-    $("#search-toggle").addEventListener("click", () => { const form = $("#search-form"); form.classList.toggle("hidden"); if (!form.classList.contains("hidden")) $("#search-input").focus(); });
+    $("#search-toggle").addEventListener("click", () => { setView("explore"); const form = $("#explore-search-form"); form.classList.remove("hidden"); $("#explore-search-input").focus(); });
     $("#search-close").addEventListener("click", () => { $("#search-form").classList.add("hidden"); $("#search-input").value = ""; state.search = ""; renderHome(); });
     $("#search-form").addEventListener("submit", event => event.preventDefault());
-    $("#search-input").addEventListener("input", event => { state.search = event.target.value; setView("explore"); renderExplore(); $("#search-input").focus(); });
+    $("#search-input").addEventListener("input", event => { state.search = event.target.value; renderExplore(); });
+    $("#explore-search-close").addEventListener("click", () => { $("#explore-search-form").classList.add("hidden"); $("#explore-search-input").value = ""; state.search = ""; renderExplore(); });
+    $("#explore-search-form").addEventListener("submit", event => event.preventDefault());
+    $("#explore-search-input").addEventListener("input", event => { state.search = event.target.value; renderExplore(); });
     $("#story-form").addEventListener("submit", createStory);
     $("#import-file").addEventListener("change", event => importStoryFile(event.target.files?.[0]));
     $("#reader-back").addEventListener("click", () => setView("library"));
