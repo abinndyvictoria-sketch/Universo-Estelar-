@@ -216,6 +216,7 @@
   }
   async function init() {
     setupEvents(); applySettings();
+    if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js").catch(error => console.warn("Service worker indisponível:", error));
     try {
       const response = await fetch("data/perdidos.json");
       if (!response.ok) throw new Error("Não foi possível carregar os dados");
